@@ -33,5 +33,17 @@ public class MyReceiver extends BroadcastReceiver {
             Notification notification = builder.build();
             manager.notify(3122, notification);
         }
+
+        if (intent.getAction().equals("DB0506Alarm"))
+        {
+            Log.d("REC1", "Alarm!!");
+            NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+            Notification.Builder builder = new Notification.Builder(context.getApplicationContext());
+            builder.setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("時間到!!")
+                    .setContentText("時間到");
+            Notification notification = builder.build();
+            manager.notify(367, notification);
+        }
     }
 }

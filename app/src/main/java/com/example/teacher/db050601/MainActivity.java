@@ -1,5 +1,6 @@
 package com.example.teacher.db050601;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TimePicker;
 
+import java.nio.channels.AlreadyBoundException;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
         pi = PendingIntent.getBroadcast(MainActivity.this, 321, it, PendingIntent.FLAG_ONE_SHOT);
 
         // 跳出 TimePickerDialog 對話框來設定時間
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int hour   = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this,
-            new MyOnTimeSetListener(), 5, 6, true);
+            new MyOnTimeSetListener(), hour, minute, true);
         timePickerDialog.show();
 
     }
@@ -44,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
     {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
         }
     }
 }

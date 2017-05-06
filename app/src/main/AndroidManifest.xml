@@ -23,6 +23,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="DB0506REC" />
+                <action android:name="DB0506Alarm" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
