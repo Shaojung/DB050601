@@ -12,5 +12,7 @@ public class MyReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
         Log.d("REC1", "onReceive!!");
+        Intent it = new Intent(context, MyService.class);
+        context.startService(it);
     }
 }

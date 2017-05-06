@@ -23,10 +23,15 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="DB0506REC" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </receiver>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
