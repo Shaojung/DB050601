@@ -11,8 +11,16 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        Log.d("REC1", "onReceive!!");
-        Intent it = new Intent(context, MyService.class);
-        context.startService(it);
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
+        {
+            Log.d("REC1", "onReceive!!");
+            Intent it = new Intent(context, MyService.class);
+            context.startService(it);
+        }
+
+        if (intent.getAction().equals("DB0506REC"))
+        {
+            Log.d("REC1", "onReceive!! click!!");
+        }
     }
 }
