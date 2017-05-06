@@ -27,7 +27,7 @@ public class MyService extends Service {
         public void run() {
             Log.d("SER", "Time:" + new java.util.Date());
             i++;
-            if (i <= 100) {
+            if (i <= 30) {
                 handler.postDelayed(this, 1000);
             } else {
 
